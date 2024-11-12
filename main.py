@@ -8,11 +8,11 @@ import streamlit as st
 def investment_calculator():
     st.header("🚀 Investment Calculator")
     # Input fields for investment parameters
-    current_age = st.number_input("Current Age", min_value=0, value=00)
-    retirement_age = st.number_input("Retirement Age", min_value=current_age + 1, value=00)
-    initial_investment_amount = st.number_input("Initial Investment Amount", min_value=0.0, value=00, step=1000.0, format="%.2f")
-    initial_monthly_investment = st.number_input("Initial Monthly Investment", min_value=0.0, value=00, step=100.0, format="%.2f")
-    annual_increase_rate = st.number_input("Annual Increase Rate of Monthly Investment (%)", min_value=0.0, value=00.00, step=0.1, format="%.2f")
+    current_age = st.number_input("Current Age", min_value=0, value=24)
+    retirement_age = st.number_input("Retirement Age", min_value=current_age + 1, value=50)
+    initial_investment_amount = st.number_input("Initial Investment Amount", min_value=0.0, value=10000.0, step=1000.0, format="%.2f")
+    initial_monthly_investment = st.number_input("Initial Monthly Investment", min_value=0.0, value=10, step=100.0, format="%.2f")
+    annual_increase_rate = st.number_input("Annual Increase Rate of Monthly Investment (%)", min_value=0.9, value=00.00, step=0.1, format="%.2f")
     annual_return_rate = st.number_input("Annual Return Rate (%)", min_value=0.0, value=0.0, step=0.1, format="%.2f")
     
     if st.button("Calculate Investment"):
