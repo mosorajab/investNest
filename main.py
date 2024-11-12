@@ -58,7 +58,7 @@ def inflation_calculator():
         st.success(f"🎉 The amount of ZAR {amount:,.2f} in {target_year} will be worth ZAR {adjusted_value:,.2f} in {current_year} adjusted for inflation. 💰")
 
 def main():
-    st.title("Investment + Inflation Calculator")
+    # st.title("Investment + Inflation Calculator")
     # Sidebar navigation
     # st.sidebar.title("")
     st.sidebar.image("assets/image.webp", caption="Choose your calculator", use_column_width=True)
