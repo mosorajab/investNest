@@ -88,7 +88,7 @@ if __name__ == "__main__":
         }
         </style>
         <div class="footer">
-            <p>built by mohamed sohail rajab</p>
+            <p>built by msr</p>
         </div>
         """,
         unsafe_allow_html=True
