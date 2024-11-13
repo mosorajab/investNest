@@ -46,7 +46,7 @@ def investment_calculator():
     st.write("---")  # Horizontal separator
 
     # Selection option with tabs for better UX
-    tabs = st.tabs(["Future Value at Retirement", "Required Monthly Savings to Reach Goal"])
+    tabs = st.tabs(["Future Value at Retirement", "Monthly Savings to Reach Goal"])
     with tabs[0]:
         future_value_calculator()
     with tabs[1]:
