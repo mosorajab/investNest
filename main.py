@@ -13,7 +13,7 @@ def investment_calculator():
     # Common inputs
     current_age = st.number_input("Current Age", min_value=0, value=25)
     retirement_age = st.number_input("Retirement Age", min_value=current_age + 1, value=65)
-    initial_investment_amount = st.number_input("Initial Investment Amount (ZAR)", min_value=0.0, value=150000.0, step=1000.0, format="%.2f")
+    initial_investment_amount = st.number_input("Initial Investment Amount (ZAR)", min_value=0.0, value=50000.0, step=1000.0, format="%.2f")
     annual_return_rate = st.number_input("Annual Return Rate (%)", min_value=0.0, value=9.0, step=0.1, format="%.2f") / 100
     years_to_invest = retirement_age - current_age
 
