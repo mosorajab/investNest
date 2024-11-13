@@ -58,19 +58,22 @@ def inflation_calculator():
         st.success(f"🎉 The amount of ZAR {amount:,.2f} in {target_year} will be worth ZAR {adjusted_value:,.2f} in {current_year} adjusted for inflation. 💰")
 
 def main():
-    # st.title("Investment + Inflation Calculator")
-    # Sidebar navigation
-    st.sidebar.title("select your calculator")
-    app_mode = st.sidebar.radio("choose option", ["💰 Investment Calculator", "📈 Inflation Calculator"])
+    # Sidebar components
+    st.sidebar.image("assets/image.webp", use_container_width=True)
+    st.sidebar.title("Select Your Calculator")
+    st.sidebar.markdown("---")  # Horizontal separator
+
+    app_mode = st.sidebar.radio("Choose Option:", ["💰 Investment Calculator", "📈 Inflation Calculator"])
+
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("Built with ❤️ by msr")
+    
+    # Main content
     if app_mode == "💰 Investment Calculator":
         investment_calculator()
     elif app_mode == "📈 Inflation Calculator":
         inflation_calculator()
 
-    st.sidebar.image("assets/image.webp", caption="Choose your calculator", use_column_width=True)
-
-
-    
 
 if __name__ == "__main__":
     main()
