@@ -75,27 +75,27 @@ def main():
         inflation_calculator()
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
-#     st.markdown(
-#         """
-#         <style>
-#         .footer {
-#             position: fixed;
-#             left: 0;
-#             bottom: 0;
-#             width: 100%;
-#             background-color: rgba(0, 0, 0, 0.1); /* More transparent */
-#             color: white;
-#             text-align: center;
-#             padding: 2px; /* Smaller padding */
-#             font-size: 10px; /* Smaller font size */
-#         }
-#         </style>
-#         <div class="footer">
-#             <p>built by msr</p>
-#         </div>
-#         """,
-#         unsafe_allow_html=True
-#     )
+    st.markdown(
+        """
+        <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1); /* More transparent */
+            color: white;
+            text-align: center;
+            padding: 2px; /* Smaller padding */
+            font-size: 10px; /* Smaller font size */
+        }
+        </style>
+        <div class="footer">
+            <p>built by msr</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
