@@ -1,7 +1,10 @@
-# Investment and Inflation Calculator Web App
+# Investment, Inflation Calculator, and Live Market Rates Web App
 import streamlit as st
 import numpy as np
 import datetime
+import pandas as pd
+import requests
+import yfinance as yf
 
 def investment_calculator():
     st.header("🚀 Investment Calculator")
@@ -125,12 +128,40 @@ def inflation_calculator():
         adjusted_value = amount / ((1 + inflation_rate_decimal) ** years_difference)
         st.success(f"🎉 The amount of ZAR {amount:,.2f} in {target_year} will be worth ZAR {adjusted_value:,.2f} in {current_year} adjusted for inflation. 💰")
 
+def live_rates():
+    st.header("📊 Live Market Rates")
+
+    try:
+        # Cryptocurrency
+        st.subheader("Cryptocurrency")
+        btc_url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        btc_data = requests.get(btc_url).json()
+        bitcoin_price = btc_data["bitcoin"]["usd"]
+        st.metric("Bitcoin (BTC)", f"${bitcoin_price:,}")
+
+        # Stocks
+        st.subheader("Stocks")
+        stocks = {
+            "MicroStrategy (MSTR)": "MSTR",
+            "S&P 500 (^GSPC)": "^GSPC",
+            "Nvidia (NVDA)": "NVDA"
+        }
+
+        for stock_name, ticker in stocks.items():
+            stock = yf.Ticker(ticker)
+            stock_price = stock.history(period="1d")["Close"].iloc[-1]
+            st.metric(stock_name, f"${stock_price:,.2f}")
+
+    except Exception as e:
+        st.error("Unable to fetch live rates at the moment. Please try again later.")
+        st.error(f"Error: {e}")
+
 def main():
     # Sidebar components
     st.sidebar.image("assets/image2.webp", use_container_width=True)
     st.sidebar.title("Select Your Calculator")
     st.sidebar.markdown("---")  # Horizontal separator
-    app_mode = st.sidebar.radio("Choose Option:", ["💰 Investment Calculator", "📈 Inflation Calculator"])
+    app_mode = st.sidebar.radio("Choose Option:", ["💰 Investment Calculator", "📈 Inflation Calculator", "📊 Live Market Rates"])
     st.sidebar.markdown("---")
     st.sidebar.markdown("Built by msr")
 
@@ -139,8 +170,8 @@ def main():
         investment_calculator()
     elif app_mode == "📈 Inflation Calculator":
         inflation_calculator()
+    elif app_mode == "📊 Live Market Rates":
+        live_rates()
 
 if __name__ == "__main__":
     main()
-
-
