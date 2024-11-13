@@ -61,13 +61,18 @@ def main():
     # st.title("Investment + Inflation Calculator")
     # Sidebar navigation
     # st.sidebar.title("")
-    st.sidebar.image("assets/image.webp", caption="Choose your calculator", use_column_width=True)
     app_mode = st.sidebar.radio("Select Calculator", ["💰 Investment Calculator", "📈 Inflation Calculator"])
     
     if app_mode == "💰 Investment Calculator":
         investment_calculator()
+        
     elif app_mode == "📈 Inflation Calculator":
         inflation_calculator()
+
+    st.sidebar.image("assets/image.webp", caption="Choose your calculator", use_column_width=True)
+
+
+    
 
 if __name__ == "__main__":
     main()
