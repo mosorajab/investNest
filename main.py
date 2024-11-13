@@ -11,14 +11,14 @@ import os
 def main():
     # Set the page config for a better layout and title
     st.set_page_config(
-        page_title="Financial Tools App",
+        page_title="Financial Tools",
         page_icon="💹",
         layout="wide",
         initial_sidebar_state="collapsed",
     )
     
     # Load and display the image in the sidebar
-    st.sidebar.title("Welcome to Financial Tools App")
+    st.sidebar.title("Welcome to Financial Tools")
     image_path = os.path.join('assets', 'image2.webp')  # Adjust the path as needed
     image = Image.open(image_path)
     st.sidebar.image(image, use_column_width=True)
