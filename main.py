@@ -41,7 +41,7 @@ def investment_calculator():
 
     else:
         # Inputs specific to Required Monthly Savings calculation
-        savings_goal = st.number_input("Savings Goal at Retirement (ZAR)", min_value=0.0, value=5000000.0, step=1000.0, format="%.2f")
+        savings_goal = st.number_input("Savings Goal at Retirement (ZAR)", min_value=0.0, value=6000000.0, step=1000.0, format="%.2f")
         annual_increase_rate = st.number_input("Annual Increase Rate of Monthly Savings (%)", min_value=0.0, value=0.0, step=0.1, format="%.2f") / 100
 
         if st.button("Calculate Required Monthly Savings"):
