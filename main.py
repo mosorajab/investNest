@@ -60,12 +60,10 @@ def inflation_calculator():
 def main():
     # st.title("Investment + Inflation Calculator")
     # Sidebar navigation
-    # st.sidebar.title("")
-    app_mode = st.sidebar.radio("Select Calculator", ["💰 Investment Calculator", "📈 Inflation Calculator"])
-    
+    # st.sidebar.title("select your calculator")
+    app_mode = st.sidebar.radio("choose option", ["💰 Investment Calculator", "📈 Inflation Calculator"])
     if app_mode == "💰 Investment Calculator":
         investment_calculator()
-        
     elif app_mode == "📈 Inflation Calculator":
         inflation_calculator()
 
