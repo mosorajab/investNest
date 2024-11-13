@@ -8,7 +8,7 @@ import streamlit as st
 def investment_calculator():
     st.header("🚀 Investment Calculator")
     # Input fields for investment parameters
-    current_age = st.number_input("Current Age", min_value=0, value=24)
+    current_age = st.number_input("Current Age", min_value=0, value=25)
     retirement_age = st.number_input("Retirement Age", min_value=current_age + 1, value=65)
     initial_investment_amount = st.number_input("Initial Investment Amount", min_value=0.0, value=150000.0, step=1000.0, format="%.2f")
     initial_monthly_investment = st.number_input("Initial Monthly Investment", min_value=0.0, value=5000.0, step=100.0, format="%.2f")
