@@ -143,10 +143,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-st.download_button(
-    label="Download Results",
-    data=results_dataframe.to_csv(index=False),
-    file_name="investment_results.csv",
-    mime="text/csv"
-)
-
