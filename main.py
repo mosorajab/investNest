@@ -143,3 +143,6 @@ def main():
 if __name__ == "__main__":
     main()
 
+st.progress(int(current_investment / goal * 100))
+
+
