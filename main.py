@@ -140,19 +140,5 @@ def main():
     elif app_mode == "📈 Inflation Calculator":
         inflation_calculator()
 
-# Add custom CSS to hide Streamlit branding
-def hide_streamlit_footer():
-    st.markdown(
-        """
-        <style>
-        footer {visibility: hidden;}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-hide_streamlit_footer()
-
-
 if __name__ == "__main__":
     main()
