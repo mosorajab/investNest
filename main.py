@@ -62,9 +62,7 @@ def main():
     st.sidebar.image("assets/image.webp", use_container_width=True)
     st.sidebar.title("Select Your Calculator")
     st.sidebar.markdown("---")  # Horizontal separator
-
     app_mode = st.sidebar.radio("Choose Option:", ["💰 Investment Calculator", "📈 Inflation Calculator"])
-
     st.sidebar.markdown("---")
     st.sidebar.markdown("Built by msr")
     
