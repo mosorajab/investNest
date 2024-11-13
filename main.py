@@ -14,7 +14,7 @@ def main():
         page_title="Financial Tools",
         page_icon="💹",
         layout="wide",
-        initial_sidebar_state="collapsed",
+        # initial_sidebar_state="collapsed",
     )
     
     # Load and display the image in the sidebar
