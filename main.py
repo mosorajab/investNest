@@ -13,53 +13,50 @@ def main():
     st.set_page_config(
         page_title="Financial Tools",
         page_icon="💹",
-        layout="wide",
+        layout="centered",
         # initial_sidebar_state="collapsed",
     )
     
     # Apply custom CSS to style the sidebar
+    # Apply custom CSS to style the sidebar
     st.markdown(
         """
         <style>
-        /* Sidebar styling */
+        /* Sidebar container */
         [data-testid="stSidebar"] {
-            background-color: #f0f2f6;
-            background-image: linear-gradient(to bottom, #f0f2f6, #ffffff);
-            color: #333333;
+            background-color: #2e4053;  /* Dark blue-gray background */
+            color: #ffffff;  /* White text */
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);  /* Add shadow effect */
+            width: 18rem;  /* Increase the width */
         }
-        [data-testid="stSidebar"] > div:first-child {  /* Remove top padding */
-            padding-top: 0rem;
-        }
+        /* Sidebar header */
         [data-testid="stSidebar"] h1 {
             text-align: center;
-            color: #4a4a4a;
-            font-family: 'Arial', sans-serif;
+            color: #f0b27a;  /* A contrasting color for the header */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin-top: 20px;
         }
+        /* Sidebar image */
         [data-testid="stSidebar"] img {
             display: block;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 20px auto;
             width: 80%;
             border-radius: 10px;
-            margin-top: 20px;
         }
+        /* Sidebar text */
         [data-testid="stSidebar"] p {
             text-align: center;
             font-size: 1.1em;
-            color: #666666;
+            color: #d5d8dc;
             margin-top: 20px;
             padding: 0 15px;
         }
-        [data-testid="stSidebar"] hr {
-            margin: 25px 0;
-        }
-        /* Radio button styling */
+        /* Navigation radio buttons */
         [data-testid="stSidebar"] .stRadio > label {
-            display: none;  /* Hide the default label */
+            display: none;
         }
         [data-testid="stSidebar"] .stRadio > div {
-            gap: 10px;
+            gap: 15px;
         }
         [data-testid="stSidebar"] .stRadio div [role="radiogroup"] {
             flex-direction: column;
@@ -70,14 +67,19 @@ def main():
         }
         [data-testid="stSidebar"] .stRadio div [data-baseweb="radio"] > label {
             font-size: 1.1em;
-            color: #4a4a4a;
+            color: #ffffff;
             font-weight: bold;
             margin-left: 8px;
+        }
+        /* Highlight selected option */
+        [data-testid="stSidebar"] .stRadio div [aria-checked="true"] > label {
+            color: #f0b27a;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
+
 
     # Load and display the image in the sidebar
     st.sidebar.markdown("<h1>Financial Tools</h1>", unsafe_allow_html=True)
