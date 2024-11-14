@@ -13,7 +13,7 @@ def main():
     st.set_page_config(
         page_title="Financial Tools",
         page_icon="💹",
-        layout="centered",
+        layout="wide",
     )
     
     # Sidebar content
