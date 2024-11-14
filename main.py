@@ -14,104 +14,46 @@ def main():
         page_title="Financial Tools",
         page_icon="💹",
         layout="centered",
-        # initial_sidebar_state="collapsed",
     )
     
-    # Apply custom CSS to style the sidebar
-    # Apply custom CSS to style the sidebar
-    st.markdown(
-        """
-        <style>
-        /* Sidebar container */
-        [data-testid="stSidebar"] {
-            background-color: #2e4053;  /* Dark blue-gray background */
-            color: #ffffff;  /* White text */
-            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);  /* Add shadow effect */
-            width: 18rem;  /* Increase the width */
-        }
-        /* Sidebar header */
-        [data-testid="stSidebar"] h1 {
-            text-align: center;
-            color: #f0b27a;  /* A contrasting color for the header */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin-top: 20px;
-        }
-        /* Sidebar image */
-        [data-testid="stSidebar"] img {
-            display: block;
-            margin: 20px auto;
-            width: 80%;
-            border-radius: 10px;
-        }
-        /* Sidebar text */
-        [data-testid="stSidebar"] p {
-            text-align: center;
-            font-size: 1.1em;
-            color: #d5d8dc;
-            margin-top: 20px;
-            padding: 0 15px;
-        }
-        /* Navigation radio buttons */
-        [data-testid="stSidebar"] .stRadio > label {
-            display: none;
-        }
-        [data-testid="stSidebar"] .stRadio > div {
-            gap: 15px;
-        }
-        [data-testid="stSidebar"] .stRadio div [role="radiogroup"] {
-            flex-direction: column;
-        }
-        [data-testid="stSidebar"] .stRadio div [data-baseweb="radio"] {
-            display: flex;
-            align-items: center;
-        }
-        [data-testid="stSidebar"] .stRadio div [data-baseweb="radio"] > label {
-            font-size: 1.1em;
-            color: #ffffff;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-        /* Highlight selected option */
-        [data-testid="stSidebar"] .stRadio div [aria-checked="true"] > label {
-            color: #f0b27a;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-    # Load and display the image in the sidebar
-    st.sidebar.markdown("<h1>Financial Tools</h1>", unsafe_allow_html=True)
-    image_path = os.path.join('assets', 'image2.webp')  # Adjust the path as needed
-    image = Image.open(image_path)
-    st.sidebar.image(image)
-
-    # Add a brief description or tagline
-    st.sidebar.markdown(
-        """
-        <p><em>Empower your financial decisions with our comprehensive suite of tools.</em></p>
-        <hr>
-        """,
-        unsafe_allow_html=True
-    )
+    # Sidebar content
+    with st.sidebar:
+        # App title in the sidebar
+        st.title("Financial Tools")
+        
+        # Load and display the image in the sidebar
+        image_path = os.path.join('assets', 'image2.webp')  # Adjust the path as needed
+        image = Image.open(image_path)
+        st.image(image, use_column_width=True)
+        
+        # Short description of the app
+        st.markdown(
+            """
+            *Empower your financial decisions with our comprehensive suite of tools.*
+            """
+        )
+        
+        # Horizontal line
+        st.write("---")
+        
+        # Footer
+        st.caption("Built by MSR")
     
-    # Navigation options with icons
-    options = ["📈 Investment Calculator", "💰 Inflation Calculator", "📊 Live Market Rates"]
-    choice = st.sidebar.radio("", options)
+    # Main navigation using tabs
+    main_tabs = st.tabs(["📈 Investment Calculator", "💰 Inflation Calculator", "📊 Live Market Rates"])
     
-    if choice == "📈 Investment Calculator":
+    with main_tabs[0]:
         investment_calculator()
-    elif choice == "💰 Inflation Calculator":
+    with main_tabs[1]:
         inflation_calculator()
-    elif choice == "📊 Live Market Rates":
+    with main_tabs[2]:
         live_rates()
-
+    
 def investment_calculator():
-    st.title("📈 Investment Calculator")
+    st.header("📈 Investment Calculator")
     st.write("---")  # Horizontal separator
 
-    # Selection option with tabs for better UX
+    # Selection option with tabs for better UX within the investment calculator
     tabs = st.tabs(["Future Value at Retirement", "Monthly Savings to Reach Goal"])
     with tabs[0]:
         future_value_calculator()
@@ -119,7 +61,7 @@ def investment_calculator():
         required_savings_calculator()
 
 def future_value_calculator():
-    st.header("Future Value at Retirement")
+    st.subheader("Future Value at Retirement")
     st.write("Calculate how much your investments will grow over time.")
 
     # Inputs
@@ -129,15 +71,15 @@ def future_value_calculator():
 
     initial_investment_amount = st.number_input("Initial Investment Amount (ZAR)", min_value=0.0, value=50000.0, step=1000.0, format="%.2f")
     initial_monthly_investment = st.number_input("Initial Monthly Investment (ZAR)", min_value=0.0, value=5000.0, step=100.0, format="%.2f")
-    annual_increase_rate = st.slider("Annual Increase Rate of Monthly Investment (%)", min_value=0.0, max_value=20.0, value=10.0, step=0.1) / 100
-    annual_return_rate = st.slider("Annual Return Rate (%)", min_value=0.0, max_value=20.0, value=9.0, step=0.1) / 100
+    annual_increase_rate = st.slider("Annual Increase Rate of Monthly Investment (%)", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
+    annual_return_rate = st.slider("Annual Return Rate (%)", min_value=0.0, max_value=20.0, value=9.0, step=0.1)
 
     if st.button("Calculate Future Value"):
         total_value, investment_values = calculate_future_value(
             initial_investment_amount,
             initial_monthly_investment,
-            annual_increase_rate,
-            annual_return_rate,
+            annual_increase_rate / 100,
+            annual_return_rate / 100,
             years_to_invest
         )
         st.success(f"At age {retirement_age}, you will have: **ZAR {total_value:,.2f}**")
@@ -147,7 +89,7 @@ def future_value_calculator():
         plot_investment_growth(investment_values, years_to_invest)
 
 def required_savings_calculator():
-    st.header("Required Monthly Savings to Reach Goal")
+    st.subheader("Monthly Savings to Reach Goal")
     st.write("Determine how much you need to save monthly to reach your retirement goal.")
 
     # Inputs
@@ -157,15 +99,15 @@ def required_savings_calculator():
 
     initial_investment_amount = st.number_input("Initial Investment Amount (ZAR)", min_value=0.0, value=50000.0, step=1000.0, format="%.2f", key='initial_investment_req')
     savings_goal = st.number_input("Savings Goal at Retirement (ZAR)", min_value=0.0, value=6000000.0, step=1000.0, format="%.2f")
-    annual_increase_rate = st.slider("Annual Increase Rate of Monthly Savings (%)", min_value=0.0, max_value=20.0, value=0.0, step=0.1) / 100
-    annual_return_rate = st.slider("Annual Return Rate (%)", min_value=0.0, max_value=20.0, value=9.0, step=0.1, key='return_rate_req') / 100
+    annual_increase_rate = st.slider("Annual Increase Rate of Monthly Savings (%)", min_value=0.0, max_value=20.0, value=0.0, step=0.1)
+    annual_return_rate = st.slider("Annual Return Rate (%)", min_value=0.0, max_value=20.0, value=9.0, step=0.1, key='return_rate_req')
 
     if st.button("Calculate Required Monthly Savings"):
         required_monthly_savings = calculate_required_monthly_savings(
             initial_investment_amount,
             savings_goal,
-            annual_increase_rate,
-            annual_return_rate,
+            annual_increase_rate / 100,
+            annual_return_rate / 100,
             years_to_invest
         )
         if required_monthly_savings is not None:
@@ -176,7 +118,7 @@ def required_savings_calculator():
 def calculate_future_value(initial_investment, monthly_investment, annual_increase_rate, annual_return_rate, years):
     total_months = years * 12
     monthly_return_rate = (1 + annual_return_rate) ** (1/12) - 1
-    monthly_increase_rate = (1 + annual_increase_rate) ** (1 / 12) - 1
+    monthly_increase_rate = (1 + annual_increase_rate) ** (1/12) - 1
 
     total_value = initial_investment
     investment_values = []  # For plotting
@@ -194,7 +136,7 @@ def calculate_future_value(initial_investment, monthly_investment, annual_increa
 def calculate_required_monthly_savings(initial_investment, savings_goal, annual_increase_rate, annual_return_rate, years):
     total_months = years * 12
     monthly_return_rate = (1 + annual_return_rate) ** (1/12) - 1
-    monthly_increase_rate = (1 + annual_increase_rate) ** (1 / 12) - 1
+    monthly_increase_rate = (1 + annual_increase_rate) ** (1/12) - 1
 
     # Initialize variables
     low = 0.0
@@ -235,7 +177,7 @@ def plot_investment_growth(investment_values, years):
     st.caption("Investment Growth Over Time")
 
 def inflation_calculator():
-    st.title("💰 Inflation Calculator")
+    st.header("💰 Inflation Calculator")
     st.write("---")  # Horizontal separator
     st.write("Adjust future amounts for inflation to understand their present-day value.")
 
@@ -253,7 +195,7 @@ def inflation_calculator():
         st.success(f"The amount of **ZAR {amount:,.2f}** in {target_year} will be worth **ZAR {adjusted_value:,.2f}** in {current_year}, adjusted for inflation.")
 
 def live_rates():
-    st.title("📊 Live Market Rates")
+    st.header("📊 Live Market Rates")
     st.write("---")  # Horizontal separator
     st.write("Stay updated with the latest market rates for cryptocurrencies and stocks.")
 
