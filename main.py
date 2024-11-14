@@ -44,9 +44,9 @@ def main():
     
     with main_tabs[0]:
         investment_calculator()
-    with main_tabs[1]:
-        inflation_calculator()
     with main_tabs[2]:
+        inflation_calculator()
+    with main_tabs[1]:
         live_rates()
     
 def investment_calculator():
