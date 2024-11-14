@@ -40,7 +40,7 @@ def main():
         st.caption("Built by MSR")
     
     # Main navigation using tabs
-    main_tabs = st.tabs(["📈 Investment Calculator", "💰 Inflation Calculator", "📊 Live Market Rates"])
+    main_tabs = st.tabs(["📈 Investment Calculator", "📊 Live Market Rates", "💰 Inflation Calculator"])
     
     with main_tabs[0]:
         investment_calculator()
