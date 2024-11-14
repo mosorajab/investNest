@@ -17,22 +17,86 @@ def main():
         # initial_sidebar_state="collapsed",
     )
     
+    # Apply custom CSS to style the sidebar
+    st.markdown(
+        """
+        <style>
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: #f0f2f6;
+            background-image: linear-gradient(to bottom, #f0f2f6, #ffffff);
+            color: #333333;
+        }
+        [data-testid="stSidebar"] > div:first-child {  /* Remove top padding */
+            padding-top: 0rem;
+        }
+        [data-testid="stSidebar"] h1 {
+            text-align: center;
+            color: #4a4a4a;
+            font-family: 'Arial', sans-serif;
+            margin-top: 20px;
+        }
+        [data-testid="stSidebar"] img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        [data-testid="stSidebar"] p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666666;
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+        [data-testid="stSidebar"] hr {
+            margin: 25px 0;
+        }
+        /* Radio button styling */
+        [data-testid="stSidebar"] .stRadio > label {
+            display: none;  /* Hide the default label */
+        }
+        [data-testid="stSidebar"] .stRadio > div {
+            gap: 10px;
+        }
+        [data-testid="stSidebar"] .stRadio div [role="radiogroup"] {
+            flex-direction: column;
+        }
+        [data-testid="stSidebar"] .stRadio div [data-baseweb="radio"] {
+            display: flex;
+            align-items: center;
+        }
+        [data-testid="stSidebar"] .stRadio div [data-baseweb="radio"] > label {
+            font-size: 1.1em;
+            color: #4a4a4a;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     # Load and display the image in the sidebar
-    st.sidebar.title("Welcome to Financial Tools")
+    st.sidebar.markdown("<h1>Financial Tools</h1>", unsafe_allow_html=True)
     image_path = os.path.join('assets', 'image2.webp')  # Adjust the path as needed
     image = Image.open(image_path)
-    st.sidebar.image(image, use_column_width=True)
+    st.sidebar.image(image)
 
     # Add a brief description or tagline
     st.sidebar.markdown(
         """
-        **Empower your financial decisions with our comprehensive suite of tools.**
-        """
+        <p><em>Empower your financial decisions with our comprehensive suite of tools.</em></p>
+        <hr>
+        """,
+        unsafe_allow_html=True
     )
     
     # Navigation options with icons
     options = ["📈 Investment Calculator", "💰 Inflation Calculator", "📊 Live Market Rates"]
-    choice = st.sidebar.radio("Navigate", options)
+    choice = st.sidebar.radio("", options)
     
     if choice == "📈 Investment Calculator":
         investment_calculator()
